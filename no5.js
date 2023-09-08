@@ -38,7 +38,7 @@ const dataPenjualanNovel = [
         sisaStok: 56,
     },
 ];
-function getInfoPenjualan(dataPenjualan) {
+const getInfoPenjualan = (dataPenjualanNovel) => {
     
     const infoPenjualan = {
         totalKeuntungan: 0,
@@ -55,7 +55,7 @@ function getInfoPenjualan(dataPenjualan) {
     let totalTerbanyak = 0;
     
     
-    for (const produk of dataPenjualan) {
+    for (const produk of dataPenjualanNovel) {
         const { penulis, totalTerjual, hargaBeli, hargaJual, sisaStok, namaProduk } = produk;
         
         
@@ -83,16 +83,15 @@ function getInfoPenjualan(dataPenjualan) {
         }
     }
     
-    infoPenjualan.penulisTerlaris = penulisTerbanyak;
-    
+    infoPenjualan.penulisTerlaris = penulisTerbanyak;   
     infoPenjualan.persentaseKeuntungan = `${((infoPenjualan.totalKeuntungan / infoPenjualan.totalModal) * 100).toFixed(2)}%`;
+    
     return infoPenjualan; 
 }
-
 const hasilInfoPenjualan = getInfoPenjualan(dataPenjualanNovel);
-
 const formatTotalKeuntungan = `Rp.${hasilInfoPenjualan.totalKeuntungan.toLocaleString("id-ID")}`;
 const formatTotalModal = `Rp.${hasilInfoPenjualan.totalModal.toLocaleString("id-ID")}`;
+
 
 console.log('Total Keuntungan:', formatTotalKeuntungan);
 console.log('Total Modal:', formatTotalModal);
