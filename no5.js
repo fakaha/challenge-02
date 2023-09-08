@@ -40,10 +40,6 @@ const dataPenjualanNovel = [
 ];
 function getInfoPenjualan(dataPenjualan) {
     
-    if (!Array.isArray(dataPenjualan)) {
-        throw new Error('Parameter harus berupa array');
-    }
-    
     const infoPenjualan = {
         totalKeuntungan: 0,
         totalModal: 0,
@@ -54,9 +50,9 @@ function getInfoPenjualan(dataPenjualan) {
         persentaseKeuntungan: 0,
         penulisTerlaris: '',
     };
-    
-    
     const penulisTerjual = {};
+    let penulisTerbanyak = '';
+    let totalTerbanyak = 0;
     
     
     for (const produk of dataPenjualan) {
@@ -79,9 +75,6 @@ function getInfoPenjualan(dataPenjualan) {
             penulisTerjual[penulis] = totalTerjual;
         }
     }
-     
-  let penulisTerbanyak = '';
-  let totalTerbanyak = 0;
   
   for (const penulis in penulisTerjual) {
       if (penulisTerjual[penulis] > totalTerbanyak) {
@@ -97,7 +90,6 @@ function getInfoPenjualan(dataPenjualan) {
 }
 
 const hasilInfoPenjualan = getInfoPenjualan(dataPenjualanNovel);
-
 
 const formatTotalKeuntungan = `Rp.${hasilInfoPenjualan.totalKeuntungan.toLocaleString("id-ID")}`;
 const formatTotalModal = `Rp.${hasilInfoPenjualan.totalModal.toLocaleString("id-ID")}`;
